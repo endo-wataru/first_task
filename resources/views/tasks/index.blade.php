@@ -4,15 +4,36 @@
             タスク一覧
         </h2>
     </x-slot>
-
+    <!-- 新規作成リンク -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+                <div class="p-6 text-gray-800">
                     index<br>
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     <a href="{{ route('tasks.create') }}" class="text-blue-500">タスク新規作成</a>
                 </div>
             </div>
         </div>
     </div>
+    <!-- タスクデータを繰り返し表示する -->
+    @foreach($tasks as $task)
+    <div class="py-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-800">
+                    {{ $task->id }}
+                    {{ $task->title }}
+                    {{ $task->description }}
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+
 </x-app-layout>

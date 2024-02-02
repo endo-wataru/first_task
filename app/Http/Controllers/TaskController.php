@@ -13,8 +13,11 @@ class TaskController extends Controller
         //$values = Task::all(); //Taskモデルのデータを$valuesに格納
         // dd($values); 指定した場所で処理を止めて変数の中身を確認
 
-        //viewsのtasks/task.blade.phpにアクセスしてvaluesの値を渡すよ
-        return view('tasks.index'); //$valuesを文字列として渡す 
+        $tasks = Task::select('id', 'title', 'description')
+            ->get();
+
+        //viewsのtask.blade.phpのindexにアクセス指示  $tasksを圧縮してindexページに渡す 
+        return view('tasks.index', compact('tasks'));
     }
 
     //新規作成画面
@@ -27,8 +30,8 @@ class TaskController extends Controller
     public function store(Request $request) //引数Requestクラスでデータを受け取る
     {
         //dd($request, $request->title);
-        $user = auth()->user();
-        $user_id = $user->id;
+        //$user = auth()->user();
+        //$user_id = $user->id;
         //DBへ登録するメソッド
         Task::create([
             'title' => $request->title,
