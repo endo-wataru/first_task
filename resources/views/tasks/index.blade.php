@@ -15,7 +15,7 @@
                         {{ session('success') }}
                     </div>
                     @endif
-                    <a href="{{ route('tasks.create') }}" class="text-blue-500">タスク新規作成</a>
+                    <a href="{{ route('tasks.create') }}" class="text-blue-500">タスク新規追加</a>
                 </div>
             </div>
         </div>
@@ -29,11 +29,20 @@
                     {{ $task->id }}
                     {{ $task->title }}
                     {{ $task->description }}
+                    <div class="flex space-x-4">
+                       <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                        <a href="{{ route('tasks.show', ['id' => $task->id]) }}">詳細</a>
+                       </button>
+                       <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                        <a href="{{ route('tasks.edit', ['id' => $task->id]) }}">編集</a>
+                       </button>
+                    </div>
+
+                   
                 </div>
             </div>
         </div>
-    </div>
-    @endforeach
+        @endforeach
 
 
 </x-app-layout>

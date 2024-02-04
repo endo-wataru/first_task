@@ -26,6 +26,10 @@ Route::prefix('tasks')->middleware(['auth'])
         Route::get('/', 'index')->name('index');
         Route::get('/', 'create')->name('create');
         Route::post('/', 'store')->name('store'); //DB登録するのでpostにする
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/{id}', 'update')->name('update'); //更新処理なのでpostにする
+        Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
 
 

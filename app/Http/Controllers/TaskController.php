@@ -20,13 +20,13 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
-    //新規作成画面
+    //新規作成機能
     public function create()
     {
         return view('tasks.create');
     }
 
-    //保存画面
+    //保存機能
     public function store(Request $request) //引数Requestクラスでデータを受け取る
     {
         //dd($request, $request->title);
@@ -40,6 +40,43 @@ class TaskController extends Controller
 
         return to_route('tasks.index')->with('success', 'タスクが作成されました。'); //DB登録したらリダイレクトする
 
+    }
+
+    //参照機能
+    public function show($id)
+    {
+        $task = Task::find($id); //findメソッドで何番目のデータを取得するか指定する
+
+        return view('tasks.show', compact('task'));
+    }
+
+    //編集機能
+    public function edit($id)
+    {
+        $task = Task::find($id);
+        
+        return view('tasks.edit', compact('task'));
+    }
+
+    //更新機能
+    public function update(Request $request, $id)
+    {   //$taskは引数$idからのデータを受け取る $requestはフォームから入力された値を受け取りDB更新する処理
+        $task = Task::find($id);
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->save(); //saveメソッドで上記のデータを保存する
+
+        return to_route('tasks.index'); //indexにリダイレクト処理が入る
+    }
+ 
+    //削除機能
+    public function destroy($id)
+    {
+        $task = Task::find($id);
+        $task->delete(); //deleteメソッドで削除する
+
+        return to_route('tasks.index'); //DB内容を削除して更新するのでindexにリダイレクト処理
     }
 
 }
