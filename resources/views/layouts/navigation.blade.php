@@ -13,12 +13,12 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                       ダッシュボード
                     </x-nav-link>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                            タスク作成
+                            タスク一覧
                         </x-nav-link>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                    タスク作成
+                    タスク一覧
                 </x-responsive-nav-link>
             </div>
 

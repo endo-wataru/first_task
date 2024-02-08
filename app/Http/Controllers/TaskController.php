@@ -33,6 +33,14 @@ class TaskController extends Controller
         //$user = auth()->user();
         //$user_id = $user->id;
         //DBへ登録するメソッド
+
+        //バリデーションルール
+        $request->validate
+        ([
+           'title' => 'required|string|max:255', //必須で文字列で最大255文字まで
+           'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
+        ]);
+        //バリデーションが通過したら新しいタスクを作成
         Task::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -63,6 +71,14 @@ class TaskController extends Controller
     {   //$taskは引数$idからのデータを受け取る $requestはフォームから入力された値を受け取りDB更新する処理
         $task = Task::find($id);
 
+        //バリデージョンルール
+        $request->validate
+        ([
+           'title' => 'required|string|max:255', //必須で文字列で最大255文字まで
+           'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
+        ]);
+
+        //左辺はテーブルに保存された値 右辺はリクエストで入力された値
         $task->title = $request->title;
         $task->description = $request->description;
         $task->save(); //saveメソッドで上記のデータを保存する
