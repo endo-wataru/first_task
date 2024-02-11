@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController; //ゲストログイン用
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TaskController; //タスク機能
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use App\Http\Controllers\TaskController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//上から順に処理が実行される
+
+//ゲストログイン用にルーティング
+Route::get('/login/guest', [AuthenticatedSessionController::class, 'guestLogin']);
 
 Route::get('tasks/index', [TaskController::class, 'index'])->name('tasks.index');
 

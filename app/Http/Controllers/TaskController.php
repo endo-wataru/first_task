@@ -3,41 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Task; //モデルTaskを使えるよう読み込む
+use App\Models\Task; //モデルTaskを使えるよう読み込みます
 
 class TaskController extends Controller
 {
-    //タスク一覧表示
-    public function index()
+    //タスク一覧機能
+    public function index(Request $request)
     {
-        //$values = Task::all(); //Taskモデルのデータを$valuesに格納
-        // dd($values); 指定した場所で処理を止めて変数の中身を確認
 
-        $tasks = Task::select('id', 'title', 'description')
-            ->get();
+        $tasks = Task::select('id', 'title', 'description');
+            
+        $tasks = Task::sortable()->paginate(10);
 
-        //viewsのtask.blade.phpのindexにアクセス指示  $tasksを圧縮してindexページに渡す 
+        //viewsのtask.blade.phpのindexにアクセス指示  $tasksを圧縮してindexページに渡します
         return view('tasks.index', compact('tasks'));
     }
-
+    
     //新規作成機能
     public function create()
     {
         return view('tasks.create');
     }
 
-    //保存機能
-    public function store(Request $request) //引数Requestクラスでデータを受け取る
+    //保存機能 引数Requestクラスでデータを受け取る
+    public function store(Request $request) 
     {
-        //dd($request, $request->title);
-        //$user = auth()->user();
-        //$user_id = $user->id;
-        //DBへ登録するメソッド
-
         //バリデーションルール
         $request->validate
         ([
-           'title' => 'required|string|max:255', //必須で文字列で最大255文字まで
+           'title' => 'required|string|max:255', //必須で文字列を扱い最大255文字まで
            'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
         ]);
         //バリデーションが通過したら新しいタスクを作成
@@ -45,8 +39,8 @@ class TaskController extends Controller
             'title' => $request->title,
             'description' => $request->description,
         ]);
-
-        return to_route('tasks.index')->with('success', 'タスクが作成されました。'); //DB登録したらリダイレクトする
+        //DB登録したらリダイレクトする
+        return to_route('tasks.index')->with('success', 'タスクが作成されました。'); 
 
     }
 
