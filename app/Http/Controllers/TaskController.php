@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use App\Models\Task; //モデルTaskを使えるよう読み込みます
+use App\Models\Task; 
 
 class TaskController extends Controller
 {

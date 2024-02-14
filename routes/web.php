@@ -16,12 +16,13 @@ use App\Http\Controllers\TaskController; //タスク機能
 |
 */
 
-//ゲストログイン用にルーティング
+//ゲストログイン処理
 Route::get('/login/guest', [AuthenticatedSessionController::class, 'guestLogin']);
 
+//インデックス画面
 Route::get('tasks/index', [TaskController::class, 'index'])->name('tasks.index');
 
-//prefixでtasksがつくルーティングをグループ化して省略する
+//prefixでtasksがつくルーティングをグループ化して省略
 Route::prefix('tasks')->middleware(['auth'])
     ->controller(TaskController::class)
     ->name('tasks.')
@@ -35,16 +36,16 @@ Route::prefix('tasks')->middleware(['auth'])
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
 
-
-
 Route::get('/', function () {
     return view('welcome');
 });
 
+//ログイン画面
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//プロフィール画面
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

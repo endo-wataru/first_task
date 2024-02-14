@@ -19,11 +19,16 @@ class TestSeeder extends Seeder
         DB::table('tasks')->insert([
             [
                 'title' => 'スポーツ',
-                'description' => 'テニスは楽しい'
+                'description' => 'テニスは楽しい',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
+
             [
                 'title' => '読書',
-                'description' => '鉄腕アトムは面白い'
+                'description' => '鉄腕アトムは面白い',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
 
         ]);
