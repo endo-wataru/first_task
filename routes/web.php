@@ -17,7 +17,7 @@ use App\Http\Controllers\TaskController; //タスク機能
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 //ゲストログイン処理
@@ -40,9 +40,9 @@ Route::prefix('tasks')->middleware(['auth'])
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 //ログイン画面
 Route::get('/dashboard', function () {
