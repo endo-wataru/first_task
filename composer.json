@@ -61,7 +61,9 @@
         ],
         "compile": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ]
+        ],
+        "heroku-postbuild": "npm install && npm run prod"
+
 
     },
     "extra": {
