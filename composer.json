@@ -2,10 +2,13 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.3.3",
         "barryvdh/laravel-debugbar": "^3.7",
         "guzzlehttp/guzzle": "^7.2",
         "kyslik/column-sortable": "^6.5",
@@ -63,8 +66,6 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "heroku-postbuild": "npm install && npm run prod"
-
-
     },
     "extra": {
         "laravel": {
