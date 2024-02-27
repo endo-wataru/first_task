@@ -39,7 +39,9 @@ Route::prefix('tasks')->middleware(['auth'])
         Route::post('/{id}', 'update')->name('update'); //更新処理なのでpostにする
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //ログイン画面
 Route::get('/dashboard', function () {
