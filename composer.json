@@ -13,7 +13,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "predis/predis": "^2.2",
-        "ext-redis": "5.*"
+        "ext-redis": "6.*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

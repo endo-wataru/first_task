@@ -8498,7 +8498,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0.2",
-        "ext-redis": "5.*"
+        "ext-redis": "6.*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
