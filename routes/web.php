@@ -15,6 +15,10 @@ use App\Http\Controllers\TaskController; //タスク機能
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//最初の画面
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //ゲストログイン処理
 Route::get('/login/guest', [AuthenticatedSessionController::class, 'guestLogin']);
@@ -35,9 +39,6 @@ Route::prefix('tasks')->middleware(['auth'])
         Route::post('/{id}', 'update')->name('update'); //更新処理なのでpostにする
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //ログイン画面
 Route::get('/dashboard', function () {
