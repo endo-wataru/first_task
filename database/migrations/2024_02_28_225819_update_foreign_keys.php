@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
+        // usersテーブルのid列を0に設定
+        DB::table('users')->update(['id' => 0]);
+
+        // tasksテーブルに外部キー制約を追加
         Schema::table('tasks', function (Blueprint $table) {
-            //外部キー制約の追加
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -26,11 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            // 外部キー制約の削除
-            $table->dropForeign(['user_id']);
-            //カラムの削除
-            $table->dropColumn('user_id');
-        });
+        //
     }
 };
