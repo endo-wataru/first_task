@@ -35,10 +35,13 @@ class TaskController extends Controller
            'title' => 'required|string|max:255', //必須で文字列を扱い最大255文字まで
            'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
         ]);
+
+        $user_id = auth()->user()->id;
         //バリデーションが通過したら新しいタスクを作成
         Task::create([
             'title' => $request->title,
             'description' => $request->description,
+            'user_id' => $user_id,
         ]);
         //DB登録したらリダイレクトする
         return to_route('tasks.index')->with('success', 'タスクが作成されました。'); 
