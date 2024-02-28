@@ -29,6 +29,8 @@ return new class extends Migration
         Schema::table('tasks', function (Blueprint $table) {
             // 外部キー制約の削除
             $table->dropForeign(['user_id']);
+            //カラムの削除
+            $table->dropColumn('user_id');
         });
     }
 };
