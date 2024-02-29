@@ -30,6 +30,11 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('sessions', function (Blueprint $table) {
+            // 外部キー制約の削除
+            $table->dropForeign(['user_id']);
+        });
+        //テーブル削除
         Schema::dropIfExists('sessions');
     }
 };
