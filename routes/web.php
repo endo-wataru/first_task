@@ -16,7 +16,7 @@ use App\Http\Controllers\TaskController; //タスク機能
 |
 */
 //最初の画面
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
