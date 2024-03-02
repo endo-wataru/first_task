@@ -15,10 +15,12 @@ use App\Http\Controllers\TaskController; //タスク機能
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//最初の画面
-Route::get('/', function () {
-    return view('welcome');
-});
+//welcome.blade.php
+if (!Route::has('welcome')) {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+}
 
 //ゲストログイン処理
 Route::get('/login/guest', [AuthenticatedSessionController::class, 'guestLogin']);
