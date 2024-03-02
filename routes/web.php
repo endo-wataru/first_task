@@ -16,11 +16,9 @@ use App\Http\Controllers\TaskController; //タスク機能
 |
 */
 //welcome.blade.php
-if (!Route::has('welcome')) {
-    Route::get('/', function () {
-        return view('welcome');
-    });
-}
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //ゲストログイン処理
 Route::get('/login/guest', [AuthenticatedSessionController::class, 'guestLogin']);
