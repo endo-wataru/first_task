@@ -15,8 +15,13 @@ use App\Http\Controllers\TaskController; //タスク機能
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//welcome.blade.php
+//ユーザーがアクセスしたら最初に表示されるページ
 Route::get('/', function () {
+    return view('auth.login');
+});
+
+//laravel スタートページ
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
