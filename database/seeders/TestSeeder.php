@@ -17,14 +17,13 @@ class TestSeeder extends Seeder
     public function run()
     {
 
-        // UserSeederでユーザーを作成
-        $this->call(UserSeeder::class);
 
         //UserSeederによって挿入されたユーザーのIDを取得します
         $userId = DB::table('users')->where('email', 'test@example.com')->value('id');
 
         DB::table('tasks')->insert([
             [
+                'user_id' => 1,
                 'title' => 'スポーツ',
                 'description' => 'テニスは楽しい',
                 'created_at' => now(),
@@ -32,8 +31,17 @@ class TestSeeder extends Seeder
             ],
 
             [
+                'user_id' => 1,
                 'title' => '読書',
                 'description' => '参考書を買いに行きたい',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'user_id' => 1,
+                'title' => '買い物',
+                'description' => '人参、白菜、大根を買ってきて',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
