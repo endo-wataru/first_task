@@ -45,7 +45,7 @@ Route::prefix('tasks')->middleware(['auth'])
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
     });
 
-//ログイン画面
+//ログインした画面
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
