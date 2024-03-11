@@ -21,12 +21,9 @@ class TestSeeder extends Seeder
         //UserSeederによって挿入されたユーザーのIDを取得します
         $userId = DB::table('users')->where('email', 'test@example.com')->value('id');
 
-        // UserSeederの変更に合わせて新しいユーザーIDを取得します
-        $newUserId = DB::table('users')->max('id') + 1;
-
         DB::table('tasks')->insert([
             [
-                'user_id' => $newUserId,
+                'user_id' => 1,
                 'title' => 'スポーツ',
                 'description' => 'テニスは楽しい',
                 'created_at' => now(),
@@ -34,7 +31,7 @@ class TestSeeder extends Seeder
             ],
 
             [
-                'user_id' => $newUserId,
+                'user_id' => 1,
                 'title' => '読書',
                 'description' => '参考書を買いに行きたい',
                 'created_at' => now(),
@@ -42,7 +39,7 @@ class TestSeeder extends Seeder
             ],
 
             [
-                'user_id' => $newUserId,
+                'user_id' => 1,
                 'title' => '買い物',
                 'description' => '人参、白菜、大根を買ってきて',
                 'created_at' => now(),
