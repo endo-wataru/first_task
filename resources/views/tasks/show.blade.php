@@ -70,6 +70,16 @@
                         </label>
                         <textarea id="description" name="description" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" disabled>{{ $task->description }}</textarea>
                       </div>
+                      <div class="flex justify-center space-x-8 mt-4">
+                        <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                          <a href="{{ route('tasks.edit', ['id' => $task->id]) }}">編集</a>
+                        </button>
+
+                        <form id="delete_{{ $task->id }}" method="post" action="{{ route('tasks.destroy', ['id' => $task->id ] )}}" class="text-white bg-pink-600 border-0 py-2 px-8 focus:outline-none hover:bg-pink-700 rounded text-lg">
+                          @csrf
+                          <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this)">削除</a>
+                        </form>
+                      </div>
                     </div>
                   </div>
 
@@ -78,4 +88,15 @@
       </div>
     </div>
   </div>
+
+  <!-- 削除時の確認メッセージを表示する -->
+  <script>
+    function deletePost(e) {
+      'use strict'
+      if (confirm('本当に削除してもいいですか？')) {
+        document.getElementById('delete_' + e.dataset.id).submit()
+      }
+    }
+  </script>
+
 </x-app-layout>
