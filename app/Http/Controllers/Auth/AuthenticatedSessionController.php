@@ -14,7 +14,7 @@ class AuthenticatedSessionController extends Controller
 {
     public function guestLogin()
     {
-        $email = 'test@example.com';
+        $email = 'guest@example.com';
         $password = 'password123';
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
