@@ -14,12 +14,16 @@ class AuthenticatedSessionController extends Controller
 {
     public function guestLogin()
     {
-        $email = 'guest@example.com';
-        $password = 'password123';
+        $userId = 1;
 
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::loginUsingId($userId)) {
             return redirect()->route('dashboard');
         }
+        //$email = 'test@example.com';
+        //$password = 'password123';
+        //if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        //    return redirect()->route('dashboard');
+        //}
 
         return redirect('/');
     }
