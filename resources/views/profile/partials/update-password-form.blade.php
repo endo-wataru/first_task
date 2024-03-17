@@ -5,10 +5,9 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-        安全を確保するために、ランダムなパスワードを使用していることを確認してください
+            安全を確保するために、ランダムなパスワードを使用していることを確認してください
         </p>
     </header>
-
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('put')
@@ -32,16 +31,11 @@
         </div>
 
         <div class="flex items-center gap-4">
+       
             <x-primary-button>保存</x-primary-button>
 
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >保存されました</p>
+            <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">保存されました</p>
             @endif
         </div>
     </form>
