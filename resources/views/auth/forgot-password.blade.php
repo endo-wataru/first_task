@@ -1,12 +1,13 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('パスワードをお忘れですか？あなたの電子メールアドレスをお知らせください。新しいパスワードを設定できるパスワードリセットリンクを電子メールでお送りします。') }}
+        {{ __('パスワードをお忘れですか？あなたのメールアドレスをお知らせください。新しいパスワードを設定しましょう。') }}
     </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('password.email') }}">
+    <!-- 入力したメールアドレスがあれば先に進む -->
+    <!-- <form method="POST" action="{{ route('password.email') }}"> -->
         @csrf
 
         <!-- Email Address -->
@@ -18,8 +19,9 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('パスワードリセットリンクをメールで送信する') }}
+                {{ __('パスワードを設定する') }}
             </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
+

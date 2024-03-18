@@ -3,7 +3,7 @@
         @csrf
 
         <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+       <!-- <input type="hidden" name="token" value="{{ $request->route('token') }}"> -->
 
         <!-- Email Address -->
         <div>
@@ -32,7 +32,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('Reset Password') }}
+                {{ __('パスワードをリセットする') }}
             </x-primary-button>
         </div>
     </form>
