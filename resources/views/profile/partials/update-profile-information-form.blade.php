@@ -19,10 +19,12 @@
 
         <div>
             <x-input-label for="name" :value="__('名前')" />
-           
+            @if(Auth::id() != 1)
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
-           
+            @else
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" readonly />
+            @endif
         </div>
 
         <div>
@@ -30,7 +32,7 @@
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
-           
+            @if(Auth::id() != 1)
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
                 <p class="text-sm mt-2 text-gray-800">
@@ -47,11 +49,12 @@
                 </p>
                 @endif
             </div>
-           @endif
-           
-            
+            @endif
+            @else
+            <p class="text-danger">※ゲストユーザーはプロフィール情報の編集が制限されています</p>
+            @endif
         </div>
-        
+@if(Auth::id() != 1)
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('保存') }}</x-primary-button>
 
@@ -59,6 +62,6 @@
             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">{{ __('保存されました') }}</p>
             @endif
         </div>
-        
+        @endif
     </form>
 </section>
