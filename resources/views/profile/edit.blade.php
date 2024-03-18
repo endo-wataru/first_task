@@ -26,6 +26,6 @@
                 </div>
             </div>
             @endif
-        </div>it
+        </div>
     </div>
 </x-app-layout>
