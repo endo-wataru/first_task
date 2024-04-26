@@ -1,12 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 タスク一覧
             </h2>
-            <button class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
-                <a href="{{ route('tasks.create') }}" class="text-white-500">タスク新規作成</a>
-            </button>
+
         </div>
         <!-- 新規作成成功メッセージ -->
         @if(session('success'))
@@ -21,24 +19,30 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-800">
-                    <div class="flex space-x-4">
-                        <!-- ソート機能 --> 
-                        <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                            <div scope="col">
-                                @sortablelink('created_at', '作成日順', ['sort' => 'asc'])
-                            </div>
-                        </button>
-
-                        <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                            <div scope="col">
-                                @sortablelink('updated_at', '更新日順', ['sort' => 'desc'])
-                            </div>
-                        </button>
-                        <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                            <div scope="col">
-                                @sortablelink('title', 'タスク名')
-                            </div>
-                        </button>
+                    <div class="flex space-x-4 justify-between">
+                        <!-- ソート機能 -->
+                        <div class="flex space-x-4">
+                            <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                                <div scope="col">
+                                    @sortablelink('created_at', '作成日順', ['sort' => 'asc'])
+                                </div>
+                            </button>
+                            <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                                <div scope="col">
+                                    @sortablelink('updated_at', '更新日順', ['sort' => 'desc'])
+                                </div>
+                            </button>
+                            <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                                <div scope="col">
+                                    @sortablelink('title', 'タスク名')
+                                </div>
+                            </button>
+                        </div>
+                        <div class="ml-auto flex justify-end">
+                            <button class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
+                                <a href="{{ route('tasks.create') }}" class="text-white-500">タスク新規作成</a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
