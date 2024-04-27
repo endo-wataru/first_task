@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**タスク モデルと 1 対多の関係を定義します。 */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

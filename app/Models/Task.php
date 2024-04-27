@@ -17,4 +17,10 @@ class Task extends Model
         'description',
         'user_id'
     ];
+
+    //User モデルとの多対 1 の関係を定義します。
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

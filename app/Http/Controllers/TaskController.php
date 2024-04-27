@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\Task; 
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -12,14 +12,13 @@ class TaskController extends Controller
     public function index(Request $request)
     {
 
-        $tasks = Task::select('id', 'title', 'description');
-            
-        $tasks = Task::sortable()->paginate(10);
+       //ログインしたユーザーのみのタスクを取得
+        $tasks = Task::where('user_id', auth()->id())->sortable()->paginate(10);
 
         //viewsのtask.blade.phpのindexにアクセス指示  $tasksを圧縮してindexページに渡します
         return view('tasks.index', compact('tasks'));
     }
-    
+
     //新規作成機能
     public function create()
     {
@@ -27,14 +26,13 @@ class TaskController extends Controller
     }
 
     //保存機能 引数Requestクラスでデータを受け取る
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         //バリデーションルール
-        $request->validate
-        ([
-           'title' => 'required|string|max:255', //必須で文字列を扱い最大255文字まで
-           'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
-        ]);
+        $request->validate([
+                'title' => 'required|string|max:255', //必須で文字列を扱い最大255文字まで
+                'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
+            ]);
 
         $user_id = auth()->user()->id;
         //バリデーションが通過したら新しいタスクを作成
@@ -44,8 +42,7 @@ class TaskController extends Controller
             'user_id' => $user_id,
         ]);
         //DB登録したらリダイレクトする
-        return to_route('tasks.index')->with('success', 'タスクが作成されました。'); 
-
+        return to_route('tasks.index')->with('success', 'タスクが作成されました。');
     }
 
     //参照機能
@@ -60,7 +57,7 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
-        
+
         return view('tasks.edit', compact('task'));
     }
 
@@ -70,11 +67,10 @@ class TaskController extends Controller
         $task = Task::find($id);
 
         //バリデージョンルール
-        $request->validate
-        ([
-           'title' => 'required|string|max:255', //必須で文字列で最大255文字まで
-           'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
-        ]);
+        $request->validate([
+                'title' => 'required|string|max:255', //必須で文字列で最大255文字まで
+                'description' => 'nullable|string', //空でも良いが、文字列であれば無制限
+            ]);
 
         //左辺はテーブルに保存された値 右辺はリクエストで入力された値
         $task->title = $request->title;
@@ -83,7 +79,7 @@ class TaskController extends Controller
 
         return to_route('tasks.index'); //indexにリダイレクト処理が入る
     }
- 
+
     //削除機能
     public function destroy($id)
     {
@@ -92,5 +88,4 @@ class TaskController extends Controller
 
         return to_route('tasks.index'); //DB内容を削除して更新するのでindexにリダイレクト処理
     }
-
 }
